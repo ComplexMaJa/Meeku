@@ -61,25 +61,6 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Project Structure
-
-```
-src/
-├── assets/          # Images & logo
-├── components/      # Reusable UI components
-│   ├── Navbar
-│   ├── Hero
-│   ├── Products
-│   ├── ProductModal
-│   ├── Editorial
-│   ├── Banner
-│   ├── Newsletter
-│   ├── Footer
-│   └── ScrollToTop
-├── context/         # React Context (Cart)
-├── data/            # Product catalog
-└── pages/           # Route pages (Home, Shop, Bag)
-```
 
 ## Color Palette
 
