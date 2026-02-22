@@ -20,6 +20,9 @@
 
 MEEKU is a premium clothing brand website built with a fashion-forward, editorial design language. The entire color palette is derived from the brand logo — soft dusty rose and muted teal — creating a calm, centered, and visually cohesive experience.
 
+> **⚠️ Disclaimer**
+> This is an entirely **fictional and hypothetical** project. MEEKU is not a real brand, company, or product. This website was created solely as a front-end development and design exercise for portfolio purposes. No real products are being sold, and no commercial activity is associated with this project. All product names, descriptions, and imagery are fabricated for demonstration only.
+
 ## Features
 
 - **Hero Section** — Full-bleed background image with subtle parallax and text overlay
@@ -94,5 +97,5 @@ MIT
 ---
 
 <p align="center">
-  <sub>Built with care for the MEEKU brand.</sub>
+  <sub>A fictional portfolio project — not a real brand. Built for demonstration purposes only.</sub>
 </p>
