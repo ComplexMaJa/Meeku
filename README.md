@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+<p align="center">
+  <img src=".github/preview.png" alt="MEEKU Preview" width="100%" />
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center">MEEKU</h1>
 
-Currently, two official plugins are available:
+<p align="center">
+  <em>Minimal pastel streetwear — designed with precision and softness.</em>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?style=flat&logo=vite&logoColor=white" alt="Vite" />
+</p>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## About
 
-## Expanding the ESLint configuration
+MEEKU is a premium clothing brand website built with a fashion-forward, editorial design language. The entire color palette is derived from the brand logo — soft dusty rose and muted teal — creating a calm, centered, and visually cohesive experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Hero Section** — Full-bleed background image with subtle parallax and text overlay
+- **Featured Collection** — Curated product grid with Quick View modals
+- **Shop Page** — Full catalog with search, category filters, and sorting
+- **Product Modal** — Size selector, description, and Add to Bag functionality
+- **Shopping Bag** — Cart page with quantity controls, order summary, and free shipping logic
+- **Editorial Section** — Magazine-style layout with lookbook imagery
+- **Newsletter** — Email subscription section
+- **Responsive** — Fully responsive across all screen sizes
+- **Scroll Animations** — Intersection Observer–driven fade-in effects
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Tool | Purpose |
+|------|---------|
+| React 18 | UI framework |
+| TypeScript | Type safety |
+| Vite | Build tool & dev server |
+| React Router | Client-side routing |
+| Vanilla CSS | Styling (no utility frameworks) |
+
+## Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/meeku.git
+cd meeku
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── assets/          # Images & logo
+├── components/      # Reusable UI components
+│   ├── Navbar
+│   ├── Hero
+│   ├── Products
+│   ├── ProductModal
+│   ├── Editorial
+│   ├── Banner
+│   ├── Newsletter
+│   ├── Footer
+│   └── ScrollToTop
+├── context/         # React Context (Cart)
+├── data/            # Product catalog
+└── pages/           # Route pages (Home, Shop, Bag)
+```
+
+## Color Palette
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Dusty Rose | `#D4899A` | Primary accent, buttons, highlights |
+| Muted Teal | `#7EAAB4` | Secondary accent, hover states |
+| Off-White | `#F8F6F3` | Background |
+| Soft Black | `#2D2D2D` | Body text |
+
+## License
+
+MIT
+
+---
+
+<p align="center">
+  <sub>Built with care for the MEEKU brand.</sub>
+</p>
