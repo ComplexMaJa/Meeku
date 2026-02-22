@@ -1,0 +1,179 @@
+/* ============================================
+   Products / Featured Collection
+   ============================================ */
+
+.products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+/* Product Card */
+.product-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.products--visible .product-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products--visible .product-card--delay-1 {
+    transition-delay: 0.1s;
+}
+
+.products--visible .product-card--delay-2 {
+    transition-delay: 0.2s;
+}
+
+.products--visible .product-card--delay-3 {
+    transition-delay: 0.3s;
+}
+
+.products--visible .product-card--delay-4 {
+    transition-delay: 0.4s;
+}
+
+.product-card__image-wrapper {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: var(--shadow-card);
+    aspect-ratio: 3 / 4;
+}
+
+.product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-card__image {
+    transform: scale(1.05);
+}
+
+.product-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(45, 45, 45, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.product-card:hover .product-card__overlay {
+    opacity: 1;
+}
+
+.product-card__quick-view {
+    padding: 0.6rem 1.6rem;
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    transform: translateY(10px);
+    transition: all var(--transition-base);
+}
+
+.product-card__quick-view:hover {
+    background: var(--color-rose);
+    color: var(--color-white);
+}
+
+.product-card:hover .product-card__quick-view {
+    transform: translateY(0);
+}
+
+/* Card Info */
+.product-card__info {
+    padding: var(--space-sm) 0.25rem;
+    text-align: center;
+}
+
+.product-card__name {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.02em;
+}
+
+.product-card__price {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .products__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .products__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+    }
+
+    .product-card__name {
+        font-size: 0.8rem;
+    }
+
+    .product-card__price {
+        font-size: 0.78rem;
+    }
+}
+
+/* ============================================
+   Browse All Button
+   ============================================ */
+
+.products__browse-all {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-xl);
+}
+
+.products__browse-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2.8rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-pill);
+    transition: all var(--transition-base);
+}
+
+.products__browse-btn:hover {
+    background: var(--color-rose);
+    color: var(--color-white);
+    border-color: var(--color-rose);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 137, 154, 0.25);
+}

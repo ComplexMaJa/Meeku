@@ -1,0 +1,114 @@
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer {
+    padding: var(--space-3xl) 0 var(--space-lg);
+    background: var(--color-bg-warm);
+}
+
+.footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Brand */
+.footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: var(--space-lg);
+}
+
+.footer__logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.footer__brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text);
+}
+
+/* Navigation */
+.footer__nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: var(--space-lg);
+}
+
+.footer__link {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+    color: var(--color-rose);
+}
+
+/* Social */
+.footer__social {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: var(--space-lg);
+}
+
+.footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    color: var(--color-text-light);
+    transition: all var(--transition-base);
+}
+
+.footer__social-link:hover {
+    background: var(--color-rose-lighter);
+    color: var(--color-rose);
+    transform: translateY(-2px);
+}
+
+/* Divider */
+.footer__divider {
+    width: 60px;
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: var(--space-md);
+}
+
+/* Copyright */
+.footer__copyright {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--color-text-lighter);
+    letter-spacing: 0.04em;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 480px) {
+    .footer__nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 1.5rem;
+    }
+}

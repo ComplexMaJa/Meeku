@@ -1,0 +1,209 @@
+/* ============================================
+   Navbar
+   ============================================ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.25rem 0;
+    transition: all var(--transition-base);
+    background: transparent;
+}
+
+.navbar--scrolled {
+    background: rgba(248, 246, 243, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.875rem 0;
+    box-shadow: 0 1px 0 var(--color-border-light);
+}
+
+.navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 1001;
+}
+
+.navbar__logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.navbar__brand {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text);
+}
+
+/* Right Side — Links + Bag */
+.navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Links */
+.navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.navbar__link {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-rose);
+    transition: width var(--transition-base);
+}
+
+.navbar__link:hover {
+    color: var(--color-text);
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+/* Bag Icon */
+.navbar__bag {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+    padding: 4px;
+}
+
+.navbar__bag:hover {
+    color: var(--color-rose);
+}
+
+.navbar__bag-count {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-rose);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    border-radius: 50%;
+    padding: 0 4px;
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hamburger */
+.navbar__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    padding: 4px;
+    z-index: 1001;
+}
+
+.navbar__hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--color-text);
+    transition: all var(--transition-base);
+    transform-origin: center;
+}
+
+.navbar__hamburger--active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.navbar__hamburger--active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar__hamburger--active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ============================================
+   Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .navbar__hamburger {
+        display: flex;
+    }
+
+    .navbar__right {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--color-bg);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition-base);
+        z-index: 1000;
+    }
+
+    .navbar__right--open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .navbar__links {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .navbar__link {
+        font-size: 1.1rem;
+        letter-spacing: 0.12em;
+    }
+
+    .navbar__bag {
+        margin-top: 1rem;
+    }
+
+    .navbar__bag svg {
+        width: 24px;
+        height: 24px;
+    }
+}

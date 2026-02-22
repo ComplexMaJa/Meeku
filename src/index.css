@@ -1,0 +1,259 @@
+/* ============================================
+   MEEKU — Design System
+   Color palette derived from brand logo
+   ============================================ */
+
+:root {
+  /* Brand Colors (from logo) */
+  --color-rose: #D4899A;
+  --color-rose-light: #E8B4C0;
+  --color-rose-lighter: #F5DDE3;
+  --color-rose-pale: #FBF0F3;
+  --color-teal: #7EAAB4;
+  --color-teal-light: #A6C8CF;
+  --color-teal-lighter: #D4E5E9;
+  --color-teal-pale: #EDF4F6;
+
+  /* Neutrals */
+  --color-bg: #F8F6F3;
+  --color-bg-warm: #F4F1ED;
+  --color-white: #FFFFFF;
+  --color-text: #2D2D2D;
+  --color-text-light: #6B6B6B;
+  --color-text-lighter: #9B9B9B;
+  --color-border: #E8E4E0;
+  --color-border-light: #F0EDE9;
+
+  /* Typography */
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+  --space-4xl: 10rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-pill: 50px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(45, 45, 45, 0.04);
+  --shadow-md: 0 4px 16px rgba(45, 45, 45, 0.06);
+  --shadow-lg: 0 8px 32px rgba(45, 45, 45, 0.08);
+  --shadow-card: 0 2px 12px rgba(45, 45, 45, 0.05);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.7;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+input {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: var(--space-xl);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text-light);
+  text-align: center;
+  max-width: 500px;
+  margin: calc(var(--space-sm) * -1) auto var(--space-xl);
+  line-height: 1.8;
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-teal-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-teal);
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: var(--color-rose-lighter);
+  color: var(--color-text);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease forwards;
+}
+
+/* Stagger delays */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}

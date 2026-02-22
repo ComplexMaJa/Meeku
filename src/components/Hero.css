@@ -1,0 +1,174 @@
+/* ============================================
+   Hero Section — Full Background Image
+   ============================================ */
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ============================================
+   Background Image Layer
+   ============================================ */
+
+.hero__bg-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    transform: scale(1.08);
+    transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Subtle overlay — keeps text readable without killing the image */
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 60% at 50% 45%,
+            rgba(248, 246, 243, 0.55) 0%,
+            rgba(248, 246, 243, 0.25) 50%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+/* Bottom fade — blends hero into page background */
+.hero__bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(to top, var(--color-bg) 0%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ============================================
+   Foreground Content
+   ============================================ */
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+/* Text block */
+.hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero--visible .hero__text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logo */
+.hero__logo {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin-bottom: var(--space-md);
+    filter: drop-shadow(0 2px 12px rgba(45, 45, 45, 0.1));
+}
+
+/* Title */
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(248, 246, 243, 0.6);
+}
+
+/* Subtitle */
+.hero__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.92rem, 1.8vw, 1.1rem);
+    font-weight: 300;
+    color: var(--color-text-light);
+    line-height: 1.9;
+    margin-bottom: var(--space-lg);
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 8px rgba(248, 246, 243, 0.8);
+}
+
+/* CTA Button */
+.hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2.8rem;
+    background: var(--color-rose);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-radius: var(--border-radius-pill);
+    transition: all var(--transition-base);
+    box-shadow: 0 6px 24px rgba(212, 137, 154, 0.3);
+}
+
+.hero__cta:hover {
+    background: var(--color-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(126, 170, 180, 0.35);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 85vh;
+    }
+
+    .hero__bg {
+        object-position: center 40%;
+    }
+
+    .hero__overlay {
+        background:
+            radial-gradient(ellipse 90% 70% at 50% 45%,
+                rgba(248, 246, 243, 0.65) 0%,
+                rgba(248, 246, 243, 0.35) 50%,
+                transparent 100%);
+    }
+
+    .hero__logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .hero__bottom-fade {
+        height: 100px;
+    }
+}
