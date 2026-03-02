@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Navbar.css';
 import logoImg from '../assets/logo.png';
@@ -9,6 +9,7 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const { totalItems } = useCart();
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,8 +28,43 @@ const Navbar = () => {
         setMenuOpen(!menuOpen);
     };
 
-    // If we're on the bag page, use Link for anchor links to go back home
-    const isHome = location.pathname === '/';
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return true;
+        }
+        return false;
+    };
+
+    const handleSectionNav = (sectionId: string) => {
+        setMenuOpen(false);
+
+        if (location.pathname === '/') {
+            scrollToSection(sectionId);
+            return;
+        }
+
+        navigate(`/?section=${sectionId}`);
+    };
+
+    useEffect(() => {
+        if (location.pathname !== '/') {
+            return;
+        }
+
+        const params = new URLSearchParams(location.search);
+        const section = params.get('section');
+        if (!section) {
+            return;
+        }
+
+        const timeoutId = window.setTimeout(() => {
+            scrollToSection(section);
+        }, 0);
+
+        return () => window.clearTimeout(timeoutId);
+    }, [location.pathname, location.search]);
 
     return (
         <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
@@ -51,21 +87,10 @@ const Navbar = () => {
 
                 <div className={`navbar__right ${menuOpen ? 'navbar__right--open' : ''}`}>
                     <ul className="navbar__links" id="navbar-links">
-                        {isHome ? (
-                            <>
-                                <li><Link to="/shop" className="navbar__link" onClick={() => setMenuOpen(false)}>Shop</Link></li>
-                                <li><a href="#editorial" className="navbar__link" onClick={() => setMenuOpen(false)}>Collection</a></li>
-                                <li><a href="#about" className="navbar__link" onClick={() => setMenuOpen(false)}>About</a></li>
-                                <li><a href="#newsletter" className="navbar__link" onClick={() => setMenuOpen(false)}>Contact</a></li>
-                            </>
-                        ) : (
-                            <>
-                                <li><Link to="/shop" className="navbar__link" onClick={() => setMenuOpen(false)}>Shop</Link></li>
-                                <li><Link to="/#editorial" className="navbar__link" onClick={() => setMenuOpen(false)}>Collection</Link></li>
-                                <li><Link to="/#about" className="navbar__link" onClick={() => setMenuOpen(false)}>About</Link></li>
-                                <li><Link to="/#newsletter" className="navbar__link" onClick={() => setMenuOpen(false)}>Contact</Link></li>
-                            </>
-                        )}
+                        <li><Link to="/shop" className="navbar__link" onClick={() => setMenuOpen(false)}>Shop</Link></li>
+                        <li><button type="button" className="navbar__link" onClick={() => handleSectionNav('editorial')}>Collection</button></li>
+                        <li><button type="button" className="navbar__link" onClick={() => handleSectionNav('about')}>About</button></li>
+                        <li><button type="button" className="navbar__link" onClick={() => handleSectionNav('newsletter')}>Contact</button></li>
                     </ul>
 
                     <Link to="/bag" className="navbar__bag" id="navbar-bag" onClick={() => setMenuOpen(false)}>

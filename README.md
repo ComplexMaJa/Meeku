@@ -61,6 +61,16 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+### Routing note
+
+This project uses `HashRouter` for client-side routing.
+
+- Home: `/#/`
+- Shop: `/#/shop`
+- Bag: `/#/bag`
+
+Use hash URLs (for example `/#/shop`) when opening links directly in static hosting environments.
+
 
 ## Color Palette
 
