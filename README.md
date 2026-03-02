@@ -90,3 +90,9 @@ MIT
 <p align="center">
   <sub>A fictional portfolio project — not a real brand. Built for demonstration purposes only.</sub>
 </p>
+
+<p align="center">
+  <a href="https://meeku.netlify.app/">
+    <img src="https://img.shields.io/badge/meeku.netlify.app-FFFFFF?style=for-the-badge&logo=netlify&logoColor=cyan">
+  </a>
+</p>
