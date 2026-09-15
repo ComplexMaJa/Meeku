@@ -1,11 +1,22 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/useCart';
 import './Bag.css';
 
 const Bag = () => {
     const { items, removeItem, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
+    const [checkoutComplete, setCheckoutComplete] = useState(false);
 
-    if (items.length === 0) {
+    const handleCheckout = () => {
+        setCheckoutComplete(true);
+    };
+
+    const handleFinishOrder = () => {
+        clearCart();
+        setCheckoutComplete(false);
+    };
+
+    if (items.length === 0 && !checkoutComplete) {
         return (
             <div className="bag-page" id="bag-page">
                 <div className="container">
@@ -30,6 +41,9 @@ const Bag = () => {
             </div>
         );
     }
+
+    const shipping = totalPrice >= 100 ? 0 : 8;
+    const finalTotal = totalPrice + shipping;
 
     return (
         <div className="bag-page" id="bag-page">
@@ -98,7 +112,7 @@ const Bag = () => {
                                 </div>
                                 <div className="bag__summary-row">
                                     <span>Shipping</span>
-                                    <span>{totalPrice >= 100 ? 'Free' : '$8.00'}</span>
+                                    <span>{shipping === 0 ? 'Free' : '$8.00'}</span>
                                 </div>
                             </div>
 
@@ -106,7 +120,7 @@ const Bag = () => {
 
                             <div className="bag__summary-row bag__summary-row--total">
                                 <span>Total</span>
-                                <span>${(totalPrice + (totalPrice >= 100 ? 0 : 8)).toFixed(2)}</span>
+                                <span>${finalTotal.toFixed(2)}</span>
                             </div>
 
                             {totalPrice < 100 && (
@@ -115,7 +129,11 @@ const Bag = () => {
                                 </p>
                             )}
 
-                            <button className="bag__checkout-btn" id="bag-checkout-btn">
+                            <button
+                                className="bag__checkout-btn"
+                                id="bag-checkout-btn"
+                                onClick={handleCheckout}
+                            >
                                 Checkout
                             </button>
 
@@ -124,12 +142,54 @@ const Bag = () => {
                             </button>
                         </div>
 
-                        <Link to="/" className="bag__continue-link" id="bag-continue-link">
+                        <Link to="/shop" className="bag__continue-link" id="bag-continue-link">
                             ← Continue Shopping
                         </Link>
                     </div>
                 </div>
             </div>
+
+            {/* Checkout Confirmation Modal */}
+            {checkoutComplete && (
+                <div className="checkout-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+                    <div className="checkout-modal">
+                        <div className="checkout-modal__icon">✓</div>
+                        <h2 className="checkout-modal__title" id="checkout-modal-title">Order Placed (Demo)</h2>
+                        <p className="checkout-modal__text">
+                            Thank you for experiencing <strong>MEEKU</strong>.
+                        </p>
+                        <div className="checkout-modal__summary">
+                            <div className="checkout-modal__summary-row">
+                                <span>Items Ordered</span>
+                                <span>{totalItems}</span>
+                            </div>
+                            <div className="checkout-modal__summary-row">
+                                <span>Order Total</span>
+                                <span>${finalTotal.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <p className="checkout-modal__disclaimer">
+                            This is a demonstration portfolio project. No payment was charged and no real products will be shipped.
+                        </p>
+                        <div className="checkout-modal__actions">
+                            <button
+                                className="checkout-modal__btn checkout-modal__btn--primary"
+                                onClick={handleFinishOrder}
+                                id="checkout-complete-finish"
+                            >
+                                Start New Order
+                            </button>
+                            <button
+                                className="checkout-modal__btn checkout-modal__btn--secondary"
+                                onClick={() => setCheckoutComplete(false)}
+                                id="checkout-complete-close"
+                            >
+                                Keep Bag
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

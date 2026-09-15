@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/useCart';
 import './Navbar.css';
 import logoImg from '../assets/logo.png';
 
@@ -18,11 +18,6 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    // Close mobile menu on route change
-    useEffect(() => {
-        setMenuOpen(false);
-    }, [location]);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -69,7 +64,7 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
             <div className="navbar__inner container">
-                <Link to="/" className="navbar__logo" id="navbar-logo">
+                <Link to="/" className="navbar__logo" id="navbar-logo" onClick={() => setMenuOpen(false)}>
                     <img src={logoImg} alt="MEEKU Logo" className="navbar__logo-img" />
                     <span className="navbar__brand">MEEKU</span>
                 </Link>

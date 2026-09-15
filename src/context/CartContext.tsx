@@ -1,36 +1,29 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { useState, useCallback, useEffect, type ReactNode } from 'react';
+import { CartContext, type CartItem } from './useCart';
 
-export interface CartItem {
-    id: number;
-    name: string;
-    price: string;
-    image: string;
-    size: string;
-    quantity: number;
-}
+const CART_STORAGE_KEY = 'meeku_cart_items';
 
-interface CartContextType {
-    items: CartItem[];
-    addItem: (item: Omit<CartItem, 'quantity'>) => void;
-    removeItem: (id: number, size: string) => void;
-    updateQuantity: (id: number, size: string, quantity: number) => void;
-    clearCart: () => void;
-    totalItems: number;
-    totalPrice: number;
-}
-
-const CartContext = createContext<CartContextType | undefined>(undefined);
-
-export const useCart = () => {
-    const context = useContext(CartContext);
-    if (!context) {
-        throw new Error('useCart must be used within a CartProvider');
+const getInitialCart = (): CartItem[] => {
+    if (typeof window === 'undefined') return [];
+    try {
+        const stored = localStorage.getItem(CART_STORAGE_KEY);
+        return stored ? JSON.parse(stored) : [];
+    } catch {
+        return [];
     }
-    return context;
 };
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const [items, setItems] = useState<CartItem[]>([]);
+    const [items, setItems] = useState<CartItem[]>(getInitialCart);
+
+    // Persist cart to localStorage on changes
+    useEffect(() => {
+        try {
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+        } catch {
+            // Ignore localStorage errors (quota or private mode)
+        }
+    }, [items]);
 
     const addItem = useCallback((newItem: Omit<CartItem, 'quantity'>) => {
         setItems((prev) => {
@@ -71,8 +64,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
     const totalPrice = items.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace('$', ''));
-        return sum + price * item.quantity;
+        const unitPrice = typeof item.priceNum === 'number'
+            ? item.priceNum
+            : parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
+        return sum + unitPrice * item.quantity;
     }, 0);
 
     return (

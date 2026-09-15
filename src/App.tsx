@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Bag from './pages/Bag';
 import Shop from './pages/Shop';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/bag" element={<Bag />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>

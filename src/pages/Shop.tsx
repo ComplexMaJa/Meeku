@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { products, categories, type Product } from '../data/products';
-import { useCart } from '../context/CartContext';
 import ProductModal from '../components/ProductModal';
 import './Shop.css';
 
@@ -13,7 +12,6 @@ const Shop = () => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const gridRef = useRef<HTMLDivElement>(null);
-    const { totalItems } = useCart();
 
     // Scroll to top on mount
     useEffect(() => {
@@ -84,9 +82,6 @@ const Shop = () => {
     };
 
     const hasActiveFilters = search.trim() !== '' || activeCategory !== 'All' || sortBy !== 'default';
-
-    // Force re-render when totalItems changes (for bag count reactivity)
-    void totalItems;
 
     return (
         <>
@@ -172,7 +167,11 @@ const Shop = () => {
                         <div className="shop__grid shop__grid--animate" ref={gridRef}>
                             {filteredProducts.map((product) => (
                                 <article className="shop__card" key={product.id} id={`shop-product-${product.id}`}>
-                                    <div className="shop__card-image-wrapper">
+                                    <div
+                                        className="shop__card-image-wrapper"
+                                        onClick={() => handleQuickView(product)}
+                                        style={{ cursor: 'pointer' }}
+                                    >
                                         <img
                                             src={product.image}
                                             alt={product.name}
@@ -182,7 +181,10 @@ const Shop = () => {
                                         <div className="shop__card-overlay">
                                             <button
                                                 className="shop__card-quick-view"
-                                                onClick={() => handleQuickView(product)}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleQuickView(product);
+                                                }}
                                             >
                                                 Quick View
                                             </button>

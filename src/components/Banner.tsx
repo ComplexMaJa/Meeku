@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './Banner.css';
-import bannerImg from '../assets/banner.png';
+import bannerImg from '../assets/banner.webp';
 
 const Banner = () => {
     const bannerRef = useRef<HTMLElement>(null);

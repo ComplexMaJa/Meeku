@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './Editorial.css';
-import editorial1Img from '../assets/editorial1.png';
+import editorial1Img from '../assets/editorial1.webp';
 import editorial2Img from '../assets/editorial2.png';
 
 const Editorial = () => {

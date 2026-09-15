@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import './Hero.css';
 import logoImg from '../assets/logo.png';
-import heroImg from '../assets/hero.png';
+import heroImg from '../assets/hero.webp';
 
 const Hero = () => {
     const heroRef = useRef<HTMLElement>(null);
@@ -71,9 +71,16 @@ const Hero = () => {
                         Minimal pastel streetwear<br />
                         designed with precision and softness.
                     </p>
-                    <a href="#products" className="hero__cta" id="hero-shop-btn">
+                    <button
+                        type="button"
+                        className="hero__cta"
+                        id="hero-shop-btn"
+                        onClick={() => {
+                            document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                    >
                         Shop Now
-                    </a>
+                    </button>
                 </div>
             </div>
 

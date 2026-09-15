@@ -207,6 +207,12 @@
     outline: none;
 }
 
+.modal__size-btn--onesize {
+    width: auto;
+    padding: 0 1.1rem;
+    font-size: 0.75rem;
+}
+
 /* Buy Button */
 .modal__buy-btn {
     width: 100%;

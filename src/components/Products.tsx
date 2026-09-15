@@ -55,7 +55,11 @@ const Products = () => {
                                 key={product.id}
                                 id={`product-${product.id}`}
                             >
-                                <div className="product-card__image-wrapper">
+                                <div
+                                    className="product-card__image-wrapper"
+                                    onClick={() => handleQuickView(product)}
+                                    style={{ cursor: 'pointer' }}
+                                >
                                     <img
                                         src={product.image}
                                         alt={product.name}
@@ -65,7 +69,10 @@ const Products = () => {
                                     <div className="product-card__overlay">
                                         <button
                                             className="product-card__quick-view"
-                                            onClick={() => handleQuickView(product)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleQuickView(product);
+                                            }}
                                             id={`quick-view-${product.id}`}
                                         >
                                             Quick View

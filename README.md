@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Vite-7-646CFF?style=flat&logo=vite&logoColor=white" alt="Vite" />
 </p>
@@ -39,7 +39,7 @@ MEEKU is a premium clothing brand website built with a fashion-forward, editoria
 
 | Tool | Purpose |
 |------|---------|
-| React 18 | UI framework |
+| React 19 | UI framework |
 | TypeScript | Type safety |
 | Vite | Build tool & dev server |
 | React Router | Client-side routing |
